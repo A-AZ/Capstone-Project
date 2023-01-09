@@ -1,21 +1,15 @@
-<div class="row container">
+<h2 class="d-flex justify-content-around mt-5">User Management</h2>
+<hr>
 
-    <div class="col-2 d-flex flex-column" id="sidebar">
-        <div class="container">
-        </div> 
-        <div class="dropdown m-5 d-flex justify-content-center">
-        </div>
-    </div>
+<div class="d-flex justify-content-end mb-5">
+    <a href="/users/edit?id=<?= $data->user->id ?>" class="btn btn-warning" id="user_edit">Edit</a>
+</div>
 
+<div class="row ">
+    <div class="col-12 d-flex flex-column align-items-center">
 
-
-    <div class="col-10 d-flex flex-column">
-        <div class=" d-flex justify-content-end">
-            <a href="/users/edit?id=<?= $data->user->id ?>" class="btn btn-warning" id="user_edit">Edit</a>
-        </div>
-
-        <table class="table table-hover">
-            <thead>
+        <table class="table table-striped table-hover">
+            <thead class="table table-dark">
                 <tr>
                     <th scope="col">User</th>
                     <th scope="col">Information</th>
@@ -48,29 +42,30 @@
                 </tr>
             </tbody>
         </table>
- 
-<hr>
-        <div>
-            <table class="table table-hover">
-                <thead>
+
+        <hr>
+        <div class=" w-50">
+            <table class="table table-striped table-hover ">
+                <thead class="table table-dark">
                     <tr>
-                        <th scope="col">Transaction ID</th>
+                        <th class="text-center" scope="col">Transaction ID</th>
+                        <th scope="col">Manage</th>
                     </tr>
                 </thead>
                 <tbody>
-                <?php foreach ($data->related_transactions as $related_transaction) : ?>                
-                <tr>
-                    <td><?= $related_transaction ?></td>
-                    <td><a href="./transaction?id=<?= $related_transaction ?>" class="btn btn-primary btn-sm">View</a></td>
-                </tr>
-                <?php endforeach; ?>
+                    <?php foreach ($data->related_transactions as $related_transaction) : ?>
+                        <tr>
+                            <td class="text-center"><?= $related_transaction ?></td>
+                            <td><a href="./transaction?id=<?= $related_transaction ?>" class="btn btn-primary btn-sm">View</a></td>
+                        </tr>
+                    <?php endforeach; ?>
                 </tbody>
             </table>
         </div>
 
 
         <div class="d-flex justify-content-end mt-5">
-            <a href="/users/delete?id=<?= $data->user->id ?>" class="btn btn-danger " id="user_delete">Delete</a>
+            <a href="/users/delete?id=<?= $data->user->id ?>" class="btn btn-danger " id="user_delete">Delete User</a>
         </div>
     </div>
 </div>

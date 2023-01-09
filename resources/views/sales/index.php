@@ -1,18 +1,19 @@
 <div>
     <div class="d-flex justify-content-center align-items-center">
-        <h1>Make a Sell</h1>
+        <h1>Make a Sale</h1>
     </div>
+    <hr>
+
     <div class="d-flex justify-content-end align-items-center">
         <strong>Total Sales: </strong>
         <span id="total-sales"> </span>
     </div>
 </div>
-<hr>
-<hr>
 
-<div class="container-fluid my-5">
+
+<div class=" my-5">
     <form id="inputForm" class="row my-5">
-        <div class="input-group col align-items-center">
+        <div class="input-group col-lg col-sm-12 mb-3 align-items-center">
             <span class="input-group-text">Item</span>
             <select class="form-select" id="items_name" required>
                 <option></option>
@@ -24,22 +25,22 @@
             </select>
         </div>
 
-        <div class="input-group col align-items-center">
+        <div class="input-group col-lg col-sm-12 mb-3 align-items-center">
             <span class="input-group-text">Item ID</span>
-            <input id="item_id" type="number" class="form-control" value="" disabled  required>
+            <input id="item_id" type="number" class="form-control" value="" disabled required>
         </div>
 
-        <div class="input-group col align-items-center">
+        <div class="input-group col-lg col-sm-12 mb-3 align-items-center">
             <span class="input-group-text">Price (JOD)</span>
-            <input id="selling_price" type="number" class="form-control" value="" disabled  required>
+            <input id="selling_price" type="number" class="form-control" value="" disabled required>
         </div>
 
-        <div class="input-group col align-items-center">
+        <div class="input-group col-lg col-sm-12 mb-3 align-items-center">
             <span class="input-group-text">Quantity</span>
             <input id="item_quantity" type="number" class="form-control" min="0" required>
         </div>
 
-        <div class="col d-flex justify-content-center align-items-center">
+        <div class="col-lg col-sm-12 mb-3 d-flex justify-content-center align-items-center">
             <button class="btn btn-success" id="add">Add</button>
         </div>
     </form>

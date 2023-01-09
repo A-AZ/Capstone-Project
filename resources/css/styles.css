@@ -1,3 +1,5 @@
+
+  
 .loginBody {
     background-color: #cfcfcf
 }
@@ -68,6 +70,12 @@ h2 {
         width: 80vw;
         margin: 3vh;
     }
+
+    footer {
+        position: sticky;
+        bottom: 0;
+        width: 100%;
+      }
 
 }
 

@@ -1,13 +1,9 @@
 <h1 class="d-flex justify-content-around mt-5">Transactions Management</h1>
     <hr>
 
-    <!-- <div class="d-flex justify-content-end mt-5">
-        <a href="/items/create?id=" class="btn btn-primary" id="item_create">Create</a>
-    </div> -->
-
-    <div class="my-5">
-        <table class="table table-hover">
-            <thead>
+    <div class="my-5 table-responsive">
+        <table class="table table-striped table-hover">
+            <thead class="table table-dark">
                 <tr>
                     <th scope="col">ID</th>
                     <th scope="col">Item ID</th>
