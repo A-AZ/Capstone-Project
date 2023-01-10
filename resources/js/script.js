@@ -1,8 +1,7 @@
 $(function () {
-    if (location.href == 'http://pos_demo.local/sales') {
+    if (location.href == 'http://pos_demo.local/sales') { // excute ajax requests only in selling page!
 
         baseUrl = "http://pos_demo.local/";
-        const items = $('#items_name');
         const quantity = $('#item_quantity');
         const sellingPrice = $('#selling_price');
         const add = $('#add');
@@ -25,6 +24,9 @@ $(function () {
             $(`#item_id`).val(itemId);
         });
 
+        /**
+         * get all the transactions that has been today by the current logged in user today
+         */
         $.ajax({
             type: "GET",
             url: baseUrl + "sellapi/get",
@@ -50,6 +52,9 @@ $(function () {
                             return false;
                         }
                         e.preventDefault();
+                        /**
+                         * to update the transaction that has been made today by the current logged in user
+                         */
                         $.ajax({
                             type: "PUT",
                             url: baseUrl + "sellapi/put",
@@ -72,7 +77,9 @@ $(function () {
                         });
                         
                     });
-
+                     /**
+                      * delete the transaction
+                      */
                     $(`button[data-id="delete_${t.id}"]`).click(function () {
                         $.ajax({
                             type: "DELETE",
@@ -109,7 +116,9 @@ $(function () {
                 total_sales: $(`#total-sales`).text(),
             };
 
-
+            /**
+             * create new transaction 
+             */
             $.ajax({
                 type: "POST",
                 url: baseUrl + "sellapi/post",
@@ -137,6 +146,9 @@ $(function () {
                                 alert('Please Enter All the Inputs !');
                                 return false;
                             }
+                            /**
+                             * update the created transaction
+                             */
                             $.ajax({
                                 type: "PUT",
                                 url: baseUrl + "sellapi/put",
@@ -160,6 +172,9 @@ $(function () {
                             //$('#inputForm')[0].reset();
                         });
 
+                        /**
+                         * delete the created transation
+                         */
                         $(`button[data-id="delete_${t.id}"]`).click(function () {
                             $.ajax({
                                 type: "DELETE",
