@@ -1,4 +1,4 @@
-<h3 class="d-flex justify-content-around mt-5">Edit Profile</h3>
+<h3 class="d-flex justify-content-around mt-5">Edit Profile Info</h3>
 <hr>
 
 
