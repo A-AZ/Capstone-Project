@@ -15,62 +15,54 @@ use Core\Helpers\Helper; ?>
         <title>POS Demo</title>
     </head>
 
-    <body>
-
-        <nav class="navbar bg-dark navbar-expand-lg navbar-dark bg-primary px-5 d-flex">
+    <body class="bg-body-secondary">
+        <!--header-->
+        <nav class="navbar navbar-expand-lg bg-body-tertiary navbar bg-dark px-3" data-bs-theme="dark">
             <div class="container-fluid">
                 <a class="navbar-brand" href="">POS Demo</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-                <a class="btn btn-success" href="/profile?id=<?=$_SESSION['user']['id']  ?>">Profile</a>
-                    <a class="btn btn-danger" href="/logout">Logout</a>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Pages
+                            </a>
+                            <ul class="dropdown-menu">
+                                <?php if (Helper::check_permissions(['dashboard:read'])) : ?>
+                                    <li><a class="dropdown-item" href="/dashboard">Dashboard</a></li>
+                                    <hr class="dropdown-divider">
+                                <?php endif; ?>
+                                <?php if (Helper::check_permissions(['transactions:create'])) :
+                                ?>
+                                    <li><a class="dropdown-item" href="/sales">Sales</a></li>
+                                <?php endif;
+                                if (Helper::check_permissions(['items:create', 'items:read', 'items:update', 'items:delete'])) :
+                                ?>
+                                    <li><a class="dropdown-item" href="/items">Stock</a></li>
+                                <?php endif;
+                                if (Helper::check_permissions(['transactions:read', 'transactions:update', 'transactions:delete'])) :
+                                ?>
+                                    <li><a class="dropdown-item" href="/transactions">Transactions</a></li>
+                                <?php endif;
+                                if (Helper::check_permissions(['users:create', 'users:read', 'users:update', 'users:delete'])) :
+                                ?>
+                                    <li><a class="dropdown-item" href="/users">Users</a></li>
+                                <?php endif;
+                                ?>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/profile?id=<?= $_SESSION['user']['id']  ?>"><?= $_SESSION['user']['display_name']?>'s Profile</a>
+                        </li>
+                    </ul>
+                    <a href="./logout" class="btn btn-outline-danger">Logout</a>
                 </div>
             </div>
         </nav>
-
-        <div class="container-fluid">
-            <div class="row ">
-
-                <div class="col-1 bg-dark">
-                    <ul class="list-group list-group-flush mt-5 bg-dark">
-                        <?php if (Helper::check_permissions(['dashboard:read'])) : ?>
-                            <li class="list-group-item bg-dark">
-                                <a href="/dashboard">Dashboard</a>
-                            </li>
-                        <?php endif; ?>
-                        <?php if (Helper::check_permissions(['transactions:create'])) :
-                        ?>
-                            <li class="list-group-item bg-dark">
-                                <a href="/sales">Sales</a>
-                            </li>
-
-                        <?php endif;
-                        if (Helper::check_permissions(['items:create', 'items:read', 'items:update', 'items:delete'])) :
-                        ?>
-                            <li class="list-group-item bg-dark">
-                                <a href="/items">Stock</a>
-                            </li>
-                        <?php endif;
-                        if (Helper::check_permissions(['transactions:read', 'transactions:update', 'transactions:delete'])) :
-                        ?>
-                            <li class="list-group-item bg-dark">
-                                <a href="/transactions">Transactions</a>
-                            </li>
-                        <?php endif;
-                        if (Helper::check_permissions(['users:create', 'users:read', 'users:update', 'users:delete'])) :
-                        ?>
-                            <li class="list-group-item bg-dark">
-                                <a href="/users">Users</a>
-                            </li>
-                        <?php endif;
-                        ?>
-
-                    </ul>
-                </div>
-
-
-                <div class="col-11">
-                    <div class="container-fluid my-5">
-                    <?php endif; ?>
+        <!---main--->
+        <main>
+        <div>
+            <div class="container my-5">
+            <?php endif; ?>

@@ -1,4 +1,4 @@
-# Selling API Documentation
+# Sellign API Documentation
 
 Response Schema:
 JSON OBJECT {"success" : Boolean,"message_code": String, "body": Array}

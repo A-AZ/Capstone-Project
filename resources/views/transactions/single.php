@@ -1,21 +1,15 @@
+<h2 class="d-flex justify-content-around mt-5">Transaction Management</h2>
+<hr>
+
+
+<div class=" d-flex justify-content-end mb-5">
+    <a href="/transactions/edit?id=<?= $data->transaction->id ?>" class="btn btn-warning" id="transaction_edit">Edit</a>
+</div>
+
 <div class="row">
-
-    <div class="col-2 d-flex flex-column" id="sidebar">
-        <div class="container-fluid">
-        </div> 
-        <div class="dropdown m-5 d-flex justify-content-center">
-        </div>
-    </div>
-
-
-
-    <div class="col-10 d-flex flex-column">
-        <div class=" d-flex justify-content-end">
-            <a href="/transactions/edit?id=<?= $data->transaction->id ?>" class="btn btn-warning" id="transaction_edit">Edit</a>
-        </div>
-
-        <table class="table table-hover">
-            <thead>
+    <div class="col-12 d-flex flex-column align-items-center">
+        <table class="table table-striped table-hover">
+            <thead class="table table-dark">
                 <tr>
                     <th scope="col">Transaction</th>
                     <th scope="col">Information</th>
@@ -56,9 +50,9 @@
                 </tr>
             </tbody>
         </table>
-
-        <div class="d-flex justify-content-end mt-5">
-            <a href="/transactions/delete?id=<?= $data->transaction->id ?>" class="btn btn-danger " id="transactions_delete">Delete</a>
-        </div>
     </div>
+</div>
+
+<div class="d-flex justify-content-end mt-5">
+    <a href="/transactions/delete?id=<?= $data->transaction->id ?>" class="btn btn-danger " id="transactions_delete">Delete</a>
 </div>

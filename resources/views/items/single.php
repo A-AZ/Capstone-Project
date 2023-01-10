@@ -1,21 +1,14 @@
+<h2 class="d-flex justify-content-around mt-5">Item Management</h2>
+
+
+<div class=" d-flex justify-content-end mb-5">
+    <a href="/items/edit?id=<?= $data->item->id ?>" class="btn btn-warning">Edit</a>
+</div>
 <div class="row">
+    <div class="col-12 d-flex flex-column align-items-center">
 
-    <div class="col-2 d-flex flex-column" id="sidebar">
-        <div class="container-fluid">
-        </div> 
-        <div class="dropdown m-5 d-flex justify-content-center">
-        </div>
-    </div>
-
-
-
-    <div class="col-10 d-flex flex-column">
-        <div class=" d-flex justify-content-end">
-            <a href="/items/edit?id=<?= $data->item->id ?>" class="btn btn-warning" id="item_edit">Edit</a>
-        </div>
-
-        <table class="table table-hover">
-            <thead>
+        <table class="table table-striped table-hover">
+            <thead class="table table-dark">
                 <tr>
                     <th scope="col">Item</th>
                     <th scope="col">Information</th>
@@ -52,9 +45,9 @@
                 </tr>
             </tbody>
         </table>
-
-        <div class="d-flex justify-content-end mt-5">
-            <a href="/items/delete?id=<?= $data->item->id ?>" class="btn btn-danger " id="item_delete">Delete</a>
-        </div>
     </div>
+</div>
+
+<div class="d-flex justify-content-end mt-5">
+    <a href="/items/delete?id=<?= $data->item->id ?>" class="btn btn-danger " id="item_delete">Delete</a>
 </div>

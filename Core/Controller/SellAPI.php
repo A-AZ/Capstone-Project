@@ -86,7 +86,7 @@ class SellAPI extends Controller
     {
         $this->permissions(['transactions:create']); //check if the user has transactions:create permission
         self::check_if_empty($this->request_body); //check if data is complete
-        self::check_if_exists(isset($this->request_body['item_id'] ) && isset($this->request_body['total_price']) && isset($this->request_body['selling_price']) && isset($this->request_body['quantity']) && isset($_SESSION['user']['id']), "Please make sure all inputs are complete!"); // check that item_id, quanitity and user_id are all complete
+        self::check_if_exists(isset($this->request_body['item_id'] ) && isset($this->request_body['selling_price']) && isset($this->request_body['quantity']) && isset($_SESSION['user']['id']), "Please make sure all inputs are complete!"); // check that item_id, quanitity and user_id are all complete
         try {
 
             $transaction = new Transaction;
@@ -121,7 +121,7 @@ class SellAPI extends Controller
     {
         $this->permissions(['transactions:create']); //check if the user has transactions:create permission
         self::check_if_empty($this->request_body); //check if data is not empty
-        self::check_if_exists(isset($this->request_body['item_id']) && isset($this->request_body['total_price']) && isset($this->request_body['selling_price']) && isset($this->request_body['quantity']) && isset($this->request_body['id']) && isset($_SESSION['user']['id']), "Please make sure all arguments are included!"); // check that item_id, quanitity and user_id are all complete
+        self::check_if_exists(isset($this->request_body['quantity']) && isset($this->request_body['id']), "Please make sure all arguments are included!"); // check that item_id, quanitity and user_id are all complete
         try {
             $transaction = new Transaction;
 

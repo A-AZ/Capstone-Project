@@ -1,21 +1,14 @@
-<div class="row container">
+<h2 class="d-flex justify-content-around mt-5">Profile Page</h2>
+<hr>
 
-    <div class="col-2 d-flex flex-column" id="sidebar">
-        <div class="container">
-        </div> 
-        <div class="dropdown m-5 d-flex justify-content-center">
-        </div>
-    </div>
+<div class="d-flex justify-content-end mb-5">
+    <a href="/profile/edit?id=<?= $_SESSION['user']['id'] ?>" class="btn btn-warning" id="profile_edit">Edit</a>
+</div>
 
-
-
-    <div class="col-10 d-flex flex-column">
-        <div class=" d-flex justify-content-end">
-            <a href="/profile/edit?id=<?= $_SESSION['user']['id'] ?>" class="btn btn-warning" id="profile_edit">Edit</a>
-        </div>
-
-        <table class="table table-hover">
-            <thead>
+<div class="row">
+    <div class="col-12 d-flex flex-column align-items-center">
+        <table class="table table-striped table-hover">
+            <thead class="table table-dark">
                 <tr>
                     <th scope="col">User</th>
                     <th scope="col">Information</th>
@@ -38,3 +31,5 @@
                 </tr>
             </tbody>
         </table>
+    </div>
+</div>

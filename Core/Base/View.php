@@ -17,6 +17,7 @@ class View
         $view = \str_replace('.', '/', $view);
         $data = (object) $data;
 
+
         $header = 'header';
         $footer = 'footer';
 

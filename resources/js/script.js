@@ -70,7 +70,7 @@ $(function () {
                                 console.log(response);
                             },
                         });
-                        $('#inputForm')[0].reset();
+                        
                     });
 
                     $(`button[data-id="delete_${t.id}"]`).click(function () {
@@ -129,7 +129,7 @@ $(function () {
                             <td><button data-id="delete_${t.id}" class="btn btn-danger btn-sm">Delete</button></td>
                             </tr>
                         `);
-                        $('#inputForm')[0].reset();
+                        //$('#inputForm')[0].reset();
 
                         $(`button[data-id="edit_${t.id}"]`).click(function (e) {
                             e.preventDefault();
@@ -157,7 +157,7 @@ $(function () {
                                     console.log(response);
                                 },
                             });
-                            $('#inputForm')[0].reset();
+                            //$('#inputForm')[0].reset();
                         });
 
                         $(`button[data-id="delete_${t.id}"]`).click(function () {

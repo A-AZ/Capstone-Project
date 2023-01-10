@@ -2,7 +2,7 @@
 </div>
 </div>
 </div>
-
+</main>
 
 
 <?php if (isset($_SESSION['user'])) : ?>
