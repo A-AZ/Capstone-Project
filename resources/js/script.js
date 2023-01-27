@@ -29,7 +29,7 @@ $(function () {
          */
         $.ajax({
             type: "GET",
-            url: baseUrl + "sellapi/get",
+            url: baseUrl + "sales/get",
             success: function (response) {
                 response.body.forEach((t => {
                     table.append(`
@@ -57,7 +57,7 @@ $(function () {
                          */
                         $.ajax({
                             type: "PUT",
-                            url: baseUrl + "sellapi/put",
+                            url: baseUrl + "sales/put",
                             data: JSON.stringify({
                                 id: t.id,
                                 item_name: $('#items_name').val(),
@@ -83,7 +83,7 @@ $(function () {
                     $(`button[data-id="delete_${t.id}"]`).click(function () {
                         $.ajax({
                             type: "DELETE",
-                            url: baseUrl + "sellapi/delete",
+                            url: baseUrl + "sales/delete",
                             data: JSON.stringify({
                                 id: t.id,
                                 quantity: t.quantity,
@@ -121,7 +121,7 @@ $(function () {
              */
             $.ajax({
                 type: "POST",
-                url: baseUrl + "sellapi/post",
+                url: baseUrl + "sales/post",
                 data: JSON.stringify(data),
                 success: function (response) {
                     response.body.forEach(t => {
@@ -151,7 +151,7 @@ $(function () {
                              */
                             $.ajax({
                                 type: "PUT",
-                                url: baseUrl + "sellapi/put",
+                                url: baseUrl + "sales/put",
                                 data: JSON.stringify({
                                     id: t.id,
                                     item_name: $('#items_name').val(),
@@ -178,7 +178,7 @@ $(function () {
                         $(`button[data-id="delete_${t.id}"]`).click(function () {
                             $.ajax({
                                 type: "DELETE",
-                                url: baseUrl + "sellapi/delete",
+                                url: baseUrl + "sales/delete",
                                 data: JSON.stringify({
                                     id: t.id,
                                     quantity: t.quantity,

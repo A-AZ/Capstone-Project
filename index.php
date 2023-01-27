@@ -56,10 +56,10 @@ Router::get('/transactions/delete', "transactions.delete"); // Delete the transa
 Router::get('/sales', "sales.index"); // list of transactions - CRUD functions (HTML)
 
 // API/AJAx routes
-Router::get('/sellapi/get', "sellapi.index"); //view tranactions (JSON)
-Router::post('/sellapi/post', "sellapi.sell_create"); //create transaction (PHP)
-Router::put('/sellapi/put', "sellapi.update"); //update transaction (PHP)
-Router::delete('/sellapi/delete', "sellapi.delete"); //delete transaction (PHP)
+Router::get('/sales/get', "endpoints.index"); //view tranactions (JSON)
+Router::post('/sales/post', "endpoints.sell_create"); //create transaction (PHP)
+Router::put('/sales/put', "endpoints.update"); //update transaction (PHP)
+Router::delete('/sales/delete', "endpoints.delete"); //delete transaction (PHP)
 
 //Users [Admin Only]
 Router::get('/users', "users.index"); // list of users (HTML)
