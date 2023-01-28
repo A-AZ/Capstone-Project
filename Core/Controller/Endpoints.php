@@ -53,11 +53,11 @@ class Endpoints extends Controller
             $transaction = $endpoint->my_today_transactions($today, $user_id);
 
             if (empty($transaction)) {
-                throw new \Exception('No transaction were found!');
+                throw new \Exception('No transactions were found for the current user today!');
             }
 
             $this->response_schema['body'] = $transaction;
-            $this->response_schema['message_code'] = "transaction_collected_successfuly";
+            $this->response_schema['message_code'] = "transactions_collected_successfuly";
         } catch (\Exception $error) {
             $this->response_schema['success'] = false;
             $this->response_schema['message_code'] = $error->getMessage();
@@ -73,9 +73,19 @@ class Endpoints extends Controller
     public function sell_create()
     {
         $this->permissions(['transactions:create']); //check if the user has transactions:create permission
-        self::check_if_empty($this->request_body); //check if data is complete
-        self::check_if_exists(isset($this->request_body['item_id']) && isset($this->request_body['selling_price']) && isset($this->request_body['quantity']) && isset($_SESSION['user']['id']), "Please make sure all inputs are complete!"); // check that item_id, quanitity and user_id are all complete
         try {
+            if (!isset($this->request_body['item_id']) || !is_numeric($this->request_body['item_id']) || empty($this->request_body['item_id'])) {
+                throw new \Exception("Please provide a valid item id.", 422);
+            }
+            if (!isset($this->request_body['selling_price']) || !is_numeric($this->request_body['selling_price']) || empty($this->request_body['selling_price'])) {
+                throw new \Exception("Please provide a valid selling price.", 422);
+            }
+            if (!isset($this->request_body['quantity']) || !is_numeric($this->request_body['quantity']) || empty($this->request_body['quantity'])) {
+                throw new \Exception("Please provide a valid quantity.", 422);
+            }
+            if (!isset($_SESSION['user']['id']) || !is_numeric($_SESSION['user']['id']) || empty($_SESSION['user']['id'])) {
+                throw new \Exception("Invalid user id.", 422);
+            }
 
             $transaction = new Transaction;
             $transaction->create($this->request_body); // create the transaction
@@ -91,8 +101,9 @@ class Endpoints extends Controller
             $this->response_schema['message_code'] = "transaction_created_successfuly";
             $this->response_schema['body'][] = $transaction_id; //view the created transaction id in the body
         } catch (\Exception $error) {
+            $this->response_schema['success'] = false;
             $this->response_schema['message_code'] = $error->getMessage();
-            $this->http_code = 422;
+            $this->http_code = $error->getCode();
         }
     }
 
@@ -104,28 +115,40 @@ class Endpoints extends Controller
     public function update()
     {
         $this->permissions(['transactions:create']); //check if the user has transactions:create permission
-        self::check_if_empty($this->request_body); //check if data is not empty
-        self::check_if_exists(isset($this->request_body['quantity']) && isset($this->request_body['id']), "Please make sure all arguments are included!"); // check that item_id, quanitity and user_id are all complete
         try {
-            $transaction = new Transaction;
+            if (!isset($this->request_body['id']) || !is_numeric($this->request_body['id']) || empty($this->request_body['id'])) {
+                throw new \Exception("Please provide a valid item id.", 422);
+            }
+            if (!isset($this->request_body['item_id']) || !is_numeric($this->request_body['item_id']) || empty($this->request_body['item_id'])) {
+                throw new \Exception("Please provide a valid item id.", 422);
+            }
+            if (!isset($this->request_body['selling_price']) || !is_numeric($this->request_body['selling_price']) || empty($this->request_body['selling_price'])) {
+                throw new \Exception("Please provide a valid selling price.", 422);
+            }
+            if (!isset($this->request_body['quantity']) || !is_numeric($this->request_body['quantity']) || empty($this->request_body['quantity'])) {
+                throw new \Exception("Please provide a valid quantity.", 422);
+            }
+            if (!isset($_SESSION['user']['id']) || !is_numeric($_SESSION['user']['id']) || empty($_SESSION['user']['id'])) {
+                throw new \Exception("Invalid user id.", 422);
+            }
 
+            $transaction = new Transaction;
             $selected_transaction = $transaction->get_by_id($this->request_body['id']); // get the transaction data
             $original_quantity = $selected_transaction->quantity; //assign the original quantity value before the edit (before the uppdate)
-
             $transaction->update($this->request_body); // update the transaction body
 
             $new_quantity = $this->request_body['quantity']; //assign the edited quantity (after the update)
             $quantity_difference = $new_quantity - $original_quantity; //calculate the difference between the orginal quantity and new quantity
             $item_id = $this->request_body['item_id']; // get item_id from the transacation
-            
+
             $endpoint = new Endpoint;
             $endpoint->edit_quantity($quantity_difference, $item_id);
-      
+
             $this->response_schema['message_code'] = "transaction_updated_successfuly";
             $this->response_schema['body'][] = $this->request_body; //view the edited transaction id in the body
         } catch (\Exception $error) {
             $this->response_schema['message_code'] = $error->getMessage();
-            $this->http_code = 421;
+            $this->http_code = $error->getCode();
         }
     }
 
@@ -137,10 +160,19 @@ class Endpoints extends Controller
     public function delete()
     {
         $this->permissions(['transactions:create']); //check if the user has transactions:create permission
-        self::check_if_empty($this->request_body); //check if data is not empty
-        self::check_if_exists(isset($this->request_body['item_id']) && isset($this->request_body['quantity']) && isset($this->request_body['id']) && isset($_SESSION['user']['id']), "Please make sure all inputs are complete!"); // check that item_id, quanitity and user_id are all complete
         try {
-
+            if (!isset($this->request_body['id']) || !is_numeric($this->request_body['id']) || empty($this->request_body['id'])) {
+                throw new \Exception("Please provide a valid item id.", 422);
+            }
+            if (!isset($this->request_body['item_id']) || !is_numeric($this->request_body['item_id']) || empty($this->request_body['item_id'])) {
+                throw new \Exception("Please provide a valid item id.", 422);
+            }
+            if (!isset($this->request_body['quantity']) || !is_numeric($this->request_body['quantity']) || empty($this->request_body['quantity'])) {
+                throw new \Exception("Please provide a valid quantity.", 422);
+            }
+            if (!isset($_SESSION['user']['id']) || !is_numeric($_SESSION['user']['id']) || empty($_SESSION['user']['id'])) {
+                throw new \Exception("Invalid user id.", 422);
+            }
 
             $transaction = new Transaction();
             $id = $this->request_body['id']; // assign the deleted transaction_id
@@ -150,7 +182,7 @@ class Endpoints extends Controller
             $transaction->delete($this->request_body['id']); // delete the transaction body
 
             $endpoint = new Endpoint;
-            $endpoint->reset_quantity($quantity, $item_id); 
+            $endpoint->reset_quantity($quantity, $item_id);
             $endpoint->delete_relation($id);
 
             $this->response_schema['message_code'] = "transaction_deleted_succecfully";
@@ -158,7 +190,7 @@ class Endpoints extends Controller
         } catch (\Exception $error) {
             $this->response_schema['success'] = false;
             $this->response_schema['message_code'] = $error->getMessage();
-            $this->http_code = 421;
+            $this->http_code = $error->getCode();
         }
     }
 }

@@ -75,7 +75,8 @@ $(function () {
                                 console.log(response);
                             },
                         });
-                        
+                        $('#inputForm').trigger('reset');
+                        $("#total-sales").text("0");
                     });
                      /**
                       * delete the transaction
@@ -138,7 +139,8 @@ $(function () {
                             <td><button data-id="delete_${t.id}" class="btn btn-danger btn-sm">Delete</button></td>
                             </tr>
                         `);
-                        //$('#inputForm')[0].reset();
+                        $('#inputForm').trigger('reset');
+                        $("#total-sales").text("0");
 
                         $(`button[data-id="edit_${t.id}"]`).click(function (e) {
                             e.preventDefault();
@@ -169,7 +171,8 @@ $(function () {
                                     console.log(response);
                                 },
                             });
-                            //$('#inputForm')[0].reset();
+                            $('#inputForm').trigger('reset');
+                            $("#total-sales").text("0");
                         });
 
                         /**

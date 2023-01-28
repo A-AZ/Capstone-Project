@@ -1,28 +1,28 @@
-# Sellign API Documentation
+# Selling API Documentation
 
 Response Schema:
 JSON OBJECT {"success" : Boolean,"message_code": String, "body": Array}
 
-GET /sellapi/get
+GET /sales/get/
 
 - Fetches all the transactions that has been made by the current logged in user today.
 - Request arguments: none
 - 404 - No transaction were found!
 
-POST /sellapi/post
+POST /sales/post/
 
 - Create new transaction
-- Request Arguments: {"quantity: Integer, item_id: Integer, selling_price: Integer, total_sales: Integer"}
+- Request Arguments: {"quantity: number, item_id: number, selling_price: number, total_sales: number"}
 - 422 - if quantity, item_id, selling_price and total_sales was not provided
 
-PUT /sellapi/put
+PUT /sales/put/
 
 - Edit the quantity, item_id, selling_price and total_sales.
-- Request Arguments: {"id: Integer, quantity: Integer, item_id: Integer, selling_price: Integer, total_sales: Integer"}
-- 421 - if id, item_id, quantity, selling_price and total_sales not provided
+- Request Arguments: {"id: number, quantity: number, item_id: number, selling_price: number, total_sales: number"}
+- 422 - if id, item_id, quantity, selling_price and total_sales not provided
 
-DELETE /sellapi/delete
+DELETE /sales/delete/
 
 - delete the transaction
-- Request Arguments: {"id: Integer, quantity: Integer, item_id: Integer"}
-- 421 - if id,quantity and item_id not provided
+- Request Arguments: {"id: number, quantity: number, item_id: number"}
+- 422 - if id,quantity and item_id not provided
