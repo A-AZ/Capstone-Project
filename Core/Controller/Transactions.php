@@ -57,6 +57,7 @@ class Transactions extends Controller
         $this->view = 'transactions.single'; //view the HTML template
         $transaction = new Transaction();
         $this->data['transaction'] = $transaction->get_by_id($_GET['id']); // get the trasnaction data by giving id in the GET request
+        $this->data['related_user'] = $transaction->related_user($_GET['id']);
     }
 
     /**

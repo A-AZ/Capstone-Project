@@ -7,12 +7,12 @@
                 <tr>
                     <th scope="col">ID</th>
                     <th scope="col">Item ID</th>
-                    <th scope="col">Item</th>
-                    <th scope="col">Selling Price</th>
+                    <th scope="col">Item Name</th>
                     <th scope="col">Quantity</th>
+                    <th scope="col">Selling Price</th>
+                    <th scope="col">Total Price</th>
                     <th scope="col">Created At</th>
                     <th scope="col">Updated At</th>
-
                     <th scope="col">Manage</th>
                 </tr>
             </thead>
@@ -22,11 +22,12 @@
                         <td><?= $transaction->id ?></td>
                         <td><?= $transaction->item_id ?></td>
                         <td><?= $transaction->item_name ?></td>
-                        <td><?= $transaction->selling_price ?></td>
                         <td><?= $transaction->quantity ?></td>
+                        <td><?= $transaction->selling_price ?> $</td>
+                        <td><?= $transaction->total_sales ?> $</td>
                         <td><?= $transaction->created_at ?></td>
                         <td><?= $transaction->updated_at ?></td>
-                        <td><a href="./transaction?id=<?= $transaction->id ?>" class="btn btn-primary btn-sm">View</a></td>
+                        <td><a href="./transaction?id=<?= $transaction->id ?>"class="btn btn-primary btn-sm">View</a></td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>

@@ -43,27 +43,6 @@
             </tbody>
         </table>
 
-        <hr>
-        <div class=" w-50">
-            <table class="table table-striped table-hover ">
-                <thead class="table table-dark">
-                    <tr>
-                        <th class="text-center" scope="col">Transaction ID</th>
-                        <th scope="col">Manage</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($data->related_transactions as $related_transaction) : ?>
-                        <tr>
-                            <td class="text-center"><?= $related_transaction ?></td>
-                            <td><a href="./transaction?id=<?= $related_transaction ?>" class="btn btn-primary btn-sm">View</a></td>
-                        </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
-        </div>
-
-
         <div class="d-flex justify-content-end mt-5">
             <a href="/users/delete?id=<?= $data->user->id ?>" class="btn btn-danger " id="user_delete">Delete User</a>
         </div>

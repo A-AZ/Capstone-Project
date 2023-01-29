@@ -8,6 +8,9 @@ $(function () {
         const table = $('#transactions_data');
         let total = $(`#total-sales`);
 
+        /**
+         * mouse and keyboard Event listeners for total sales when quantity is changed (price can not be changed by the user)
+         */
         sellingPrice, quantity.keyup(function () {
             total.text(sellingPrice.val() * quantity.val());
         });
@@ -16,7 +19,9 @@ $(function () {
             total.text(sellingPrice.val() * quantity.val());
         });
 
-
+        /**
+         * Automatically assign a value for price and item id without user interference
+         */
         $(`#items_name`).change(function (e) {
             var price = $(this).find(':selected').data('price');
             var itemId = $(this).find(':selected').data('item_id');
@@ -45,7 +50,9 @@ $(function () {
                 </tr>
                 `);
                     console.log(response);
-
+                    /**
+                     * validation to insure the user enter the correct inputs
+                     */
                     $(`button[data-id="edit_${t.id}"]`).click(function (e) {
                         if ($('#items_name').val() === "" || $('#item_quantity').val() === "") {
                             alert('Please Enter All the Inputs !');
@@ -53,7 +60,7 @@ $(function () {
                         }
                         e.preventDefault();
                         /**
-                         * to update the transaction that has been made today by the current logged in user
+                         *  update the transaction that has been made today by the current logged in user
                          */
                         $.ajax({
                             type: "PUT",
@@ -72,15 +79,16 @@ $(function () {
                                 $(`tr[data-id="${t.id}"]`).find('td:nth-child(4)').text($('#item_quantity').val());
                                 $(`tr[data-id="${t.id}"]`).find('td:nth-child(5)').text($('#selling_price').val());
                                 $(`tr[data-id="${t.id}"]`).find('td:nth-child(6)').text($(`#total-sales`).text());
+                                $('#inputForm').trigger('reset');
+                                $("#total-sales").text("0");
                                 console.log(response);
                             },
+
                         });
-                        $('#inputForm').trigger('reset');
-                        $("#total-sales").text("0");
                     });
-                     /**
-                      * delete the transaction
-                      */
+                    /**
+                     * delete the transaction
+                     */
                     $(`button[data-id="delete_${t.id}"]`).click(function () {
                         $.ajax({
                             type: "DELETE",
@@ -105,6 +113,9 @@ $(function () {
 
         add.click(function (e) {
             e.preventDefault();
+            /**
+             * validation to insure the user enter the correct inputs
+             */
             if ($('#items_name').val() === "" || $('#item_quantity').val() === "") {
                 alert('Please Enter All the Inputs !');
                 return false;
@@ -126,7 +137,6 @@ $(function () {
                 data: JSON.stringify(data),
                 success: function (response) {
                     response.body.forEach(t => {
-                        console.log(response);
                         table.append(`
                             <tr data-id="${t.id}">
                             <td>${t.id}</td>
@@ -141,13 +151,19 @@ $(function () {
                         `);
                         $('#inputForm').trigger('reset');
                         $("#total-sales").text("0");
+                        console.log(response);
+
 
                         $(`button[data-id="edit_${t.id}"]`).click(function (e) {
                             e.preventDefault();
+                            /**
+                             * validation to insure the user enter the correct inputs
+                             */
                             if ($('#items_name').val() === "" || $('#item_quantity').val() === "") {
                                 alert('Please Enter All the Inputs !');
                                 return false;
                             }
+
                             /**
                              * update the created transaction
                              */
@@ -168,11 +184,12 @@ $(function () {
                                     $(`tr[data-id="${t.id}"]`).find('td:nth-child(4)').text($('#item_quantity').val());
                                     $(`tr[data-id="${t.id}"]`).find('td:nth-child(5)').text($('#selling_price').val());
                                     $(`tr[data-id="${t.id}"]`).find('td:nth-child(6)').text($(`#total-sales`).text());
+                                    $('#inputForm').trigger('reset');
+                                    $("#total-sales").text("0");
                                     console.log(response);
+
                                 },
                             });
-                            $('#inputForm').trigger('reset');
-                            $("#total-sales").text("0");
                         });
 
                         /**
@@ -191,6 +208,9 @@ $(function () {
                                     console.log(response);
                                 },
                             });
+                            /**
+                             * animation to hide the elements of deleted transaction
+                             */
                             $(`tr[data-id="${t.id}"]`).hide('slow', function () {
                                 $(this).remove();
                             });

@@ -26,6 +26,11 @@
         </div>
 
         <div class="input-group col-lg col-sm-12 mb-3 align-items-center">
+            <span class="input-group-text">Quantity</span>
+            <input id="item_quantity" type="number" class="form-control" min="0" required>
+        </div>
+
+        <div class="input-group col-lg col-sm-12 mb-3 align-items-center">
             <span class="input-group-text">Item ID</span>
             <input id="item_id" type="number" class="form-control" value="" disabled required>
         </div>
@@ -33,11 +38,6 @@
         <div class="input-group col-lg col-sm-12 mb-3 align-items-center">
             <span class="input-group-text">Price (JOD)</span>
             <input id="selling_price" type="number" class="form-control" value="" disabled required>
-        </div>
-
-        <div class="input-group col-lg col-sm-12 mb-3 align-items-center">
-            <span class="input-group-text">Quantity</span>
-            <input id="item_quantity" type="number" class="form-control" min="0" required>
         </div>
 
         <div class="col-lg col-sm-12 mb-3 d-flex justify-content-center align-items-center">

@@ -14,7 +14,11 @@ class Item extends Model
     public function top_expensive(): array
     {
         $data = array();
-        $result = $this->connection->query("SELECT * FROM $this->table ORDER BY selling_price DESC LIMIT 5"); // send query to db to get sum the total sales value and assign it to sum_total_sales 
+        $stmt = $this->connection->prepare("SELECT * FROM $this->table ORDER BY selling_price DESC LIMIT 5"); 
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_object()) {
                 $data[] = $row;

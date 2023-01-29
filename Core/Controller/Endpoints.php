@@ -74,6 +74,7 @@ class Endpoints extends Controller
     {
         $this->permissions(['transactions:create']); //check if the user has transactions:create permission
         try {
+            // validations for the inputs, checking if there is no null values, numeric and not empty.
             if (!isset($this->request_body['item_id']) || !is_numeric($this->request_body['item_id']) || empty($this->request_body['item_id'])) {
                 throw new \Exception("Please provide a valid item id.", 422);
             }

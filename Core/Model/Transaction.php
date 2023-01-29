@@ -14,9 +14,10 @@ class Transaction extends Model
      */
     public function sum_total_sales(): int
     {
-        $result = $this->connection->query("SELECT SUM(total_sales) as sum_total_sales FROM $this->table"); // send query to db to get sum the total sales value and assign it to sum_total_sales 
-        $row = $result->fetch_object();
-
-        return (int) $row->sum_total_sales; // return the results as an inter
+        $stmt = $this->connection->prepare("SELECT SUM(total_sales) as sum_total_sales FROM $this->table");
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        return (int) $result->fetch_object()->sum_total_sales; // return the results as an inter
     }
 }

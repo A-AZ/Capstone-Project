@@ -20,14 +20,15 @@ class Endpoint extends Model
         $stmt->bind_param("si", $today, $user_id); //bind the parameters to the statment
         $stmt->execute(); // execute the statment
         $result = $stmt->get_result(); //collect the results
-        $transaction = array(); // declair an empty array to save the result in it
+        $stmt->close(); // close the statement
+
+        $transaction = array(); // casting an empty array to save the result in it
         if ($result->num_rows > 0) { //checking if there is rows, if true set it as object, null when empty and fail as failure
             while ($row = $result->fetch_object()) {
                 $transaction[] = $row;
             }
         }
         return $transaction;
-        $stmt->close(); // close the statement
         $this->connection->close(); // close the connectionÍ
     }
 
@@ -45,6 +46,7 @@ class Endpoint extends Model
         $stmt->execute();
         $stmt->close(); // close the statement
     }
+
     /**
      * a function that create a row in seperate table that has a relation with the transaction_id and user_id
      *
@@ -60,6 +62,7 @@ class Endpoint extends Model
         $stmt->close(); // close the statement
 
     }
+    
     /**
      * a functiont that edit the quantity for a created  transaction 
      *

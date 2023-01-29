@@ -36,7 +36,7 @@ Router::post('/authenticate', "authentication.validate"); //Validate the login i
 // Informative Dashboard [Admin]
 Router::get('/dashboard', "dashboard.index"); // Informnative dashboard (HTML)
 
-//Items/Stocks routes [Admin & Procurement Only]
+//Inventory routes [Admin & Procurement Only]
 Router::get('/items', "items.index"); // list of items (HTML)
 Router::get('/item', "items.single"); // Display single item (HTML)
 Router::get('/items/create', "items.create"); // Display the creation of item form (HTML)

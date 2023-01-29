@@ -48,6 +48,10 @@
                     <td>Updated at</td>
                     <td><?= $data->transaction->updated_at ?></td>
                 </tr>
+                <tr>
+                    <td>Sold By</td>
+                    <td><?= $data->related_user->user_id ?></td>
+                </tr>
             </tbody>
         </table>
     </div>

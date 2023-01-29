@@ -29,9 +29,12 @@ class Model
      */
     public function get_all(): array
     {
-        $data = array();
-        $result = $this->connection->query("SELECT * FROM $this->table");
+        $stmt = $this->connection->prepare("SELECT * FROM $this->table");
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
 
+        $data = array();
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_object()) {
                 $data[] = $row;
@@ -39,6 +42,7 @@ class Model
         }
         return $data;
     }
+
     /**
      * to get a specific row from a table in DB and also prevent sql injections
      *
@@ -203,29 +207,18 @@ class Model
     }
 
     /**
-     *  get transactions related to a user and view it to the admin
+     * a function that get user id for a created transaction (i.e who created the transaction)
      *
-     * @return array
+     * @param [type] $id
+     * @return 
      */
-    public function related_transaction(): array
+    public function related_user($id)
     {
-        $related_user = $_GET['id'];
-        $result = $this->connection->query("SELECT * FROM transactions_users WHERE user_id= $related_user");
-        $related_transactions = array();
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_object()) {
-                $related_transactions[] = $row;
-            }
-        }
-
-        $final_rel_transactions = array();
-        foreach ($related_transactions as $related_transaacton) {
-            if (!in_array($related_transaacton->transaction_id, $final_rel_transactions)) {
-                $final_rel_transactions[] = $related_transaacton->transaction_id;
-            }
-        }
-
-        return $final_rel_transactions;
+        $stmt = $this->connection->prepare("SELECT * FROM transactions_users WHERE transaction_id= ?");
+        $stmt->bind_param('s', $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        return $result->fetch_object();
     }
-
 }

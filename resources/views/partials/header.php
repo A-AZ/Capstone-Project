@@ -40,7 +40,7 @@ use Core\Helpers\Helper; ?>
                                 <?php endif;
                                 if (Helper::check_permissions(['items:create', 'items:read', 'items:update', 'items:delete'])) :
                                 ?>
-                                    <li><a class="dropdown-item" href="/items">Stock</a></li>
+                                    <li><a class="dropdown-item" href="/items">Inventory</a></li>
                                 <?php endif;
                                 if (Helper::check_permissions(['transactions:read', 'transactions:update', 'transactions:delete'])) :
                                 ?>

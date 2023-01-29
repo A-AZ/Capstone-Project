@@ -58,9 +58,6 @@ class Users extends Controller
         $user = new User();
         $this->data['user'] = $user->get_by_id($_GET['id']); // get the user data by giving id in the GET request
 
-        // get trans related to the user
-        $transaction = new Transaction();
-        $this->data['related_transactions'] = $transaction->related_transaction($_GET['id']); // get the transactions id related to the user ID by giving user_id in the GET request to view it in the single user page
     }
 
     /**

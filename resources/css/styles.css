@@ -1,4 +1,12 @@
-
+main {
+    min-height: 80vh;
+  }
+  
+  footer {
+    position: sticky;
+    top: 100%
+  }
+  
   
 .loginBody {
     background-color: #cfcfcf

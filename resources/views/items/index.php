@@ -1,9 +1,8 @@
-    <h1 class="d-flex justify-content-around my-5">Stock Management</h1>
+    <h1 class="d-flex justify-content-around">Inventory Management</h1>
     <hr>
     <div class="d-flex justify-content-end mt-5">
         <a href="/items/create?id=" class="btn btn-primary" id="item_create">Create</a>
     </div>
-    <hr>
 
     <div class="my-5 table-responsive">
         <table class="table table-striped table-hover">
