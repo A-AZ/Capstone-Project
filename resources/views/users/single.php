@@ -33,6 +33,10 @@
                     <td><?= $data->user->role ?></td>
                 </tr>
                 <tr>
+                    <td>Email</td>
+                    <td><?= $data->user->email ?></td>
+                </tr>
+                <tr>
                     <td>Created at</td>
                     <td><?= $data->user->created_at ?></td>
                 </tr>

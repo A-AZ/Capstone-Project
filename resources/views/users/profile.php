@@ -24,7 +24,10 @@
                     <td>username</td>
                     <td><?= $data->user->username ?></td>
                 </tr>
-
+                <tr>
+                    <td>email</td>
+                    <td><?= $data->user->email ?></td>
+                </tr>
                 <tr>
                     <td>Role</td>
                     <td><?= $data->user->role ?></td>

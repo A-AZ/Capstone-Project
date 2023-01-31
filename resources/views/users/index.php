@@ -13,6 +13,7 @@
                     <th scope="col">Display Name</th>
                     <th scope="col">username</th>
                     <th scope="col">Role </th>
+                    <th scope="col">Email </th>
                     <th scope="col">Created At</th>
                     <th scope="col">Updated At</th>
                     <th scope="col">Manage</th>
@@ -25,6 +26,7 @@
                         <td><?= $user->display_name ?></td>
                         <td><?= $user->username ?></td>
                         <td><?= $user->role ?></td>
+                        <td><?= $user->email ?></td>
                         <td><?= $user->created_at ?></td>
                         <td><?= $user->updated_at ?></td>
                         <td><a href="./user?id=<?= $user->id ?>" class="btn btn-primary btn-sm">View</a></td>
