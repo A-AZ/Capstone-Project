@@ -29,7 +29,6 @@ class Endpoint extends Model
             }
         }
         return $transaction;
-        $this->connection->close(); // close the connectionÍ
     }
 
     /**
