@@ -181,7 +181,7 @@ class Model
     {
         $servername = "localhost";
         $username = "root";
-        $password = "";
+        $password = "root";
         $database = "pos_demo";
 
         $this->connection = new \mysqli($servername, $username, $password, $database);
