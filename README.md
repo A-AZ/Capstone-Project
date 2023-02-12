@@ -1,3 +1,8 @@
+# POINT OF SALE
+
+A point of sale system that manage a store transactions, inventory and users. The web application is developed using MVC design pattern.
+
+
 # Selling API Documentation
 
 Response Schema:
